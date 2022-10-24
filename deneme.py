@@ -9,12 +9,25 @@ def validate_ip_address(address):
 
 
 ## Adding
-dosya = open("fihrist.txt","r+")
-numbers= []
+dosya = open("bizimliste.txt","r+")
+bizimliste = []
 for satir in dosya:
    satir = satir.replace("\n","")
-   numbers.append(satir)
+   bizimliste.append(satir)
+
+dosya2 = open("eklenecekliste.txt","r+")
+eklenecekliste = []
+for satir in dosya2:
+   satir = satir.replace("\n","")
+   eklenecekliste.append(satir)
+
+print(bizimliste)
+print(eklenecekliste)
+
+for eleman in eklenecekliste: 
+    if not(eleman in bizimliste):
+        print(eleman)
 
 ## Sorting
-for ip in sorted(numbers, key = lambda ip: [int(ip) for ip in ip.split(".")] ):
+for ip in sorted(bizimliste, key = lambda ip: [int(ip) for ip in ip.split(".")] ):
             print(ip)
