@@ -6,7 +6,11 @@ def validate_ip_address(address):
         print("IP address {} is valid. The object returned is {}".format(address, ip))
     except ValueError:
         print("IP address {} is not valid".format(address)) 
-
+        
+## Sorting        
+def sorting(liste):
+    for ip in sorted(liste, key = lambda ip: [int(ip) for ip in ip.split(".")] ):
+         print(ip)
 
 ## Adding
 dosya = open("bizimliste.txt","r+")
@@ -28,6 +32,4 @@ for eleman in eklenecekliste:
     if not(eleman in bizimliste):
         print(eleman)
 
-## Sorting
-for ip in sorted(bizimliste, key = lambda ip: [int(ip) for ip in ip.split(".")] ):
-            print(ip)
+sorting(bizimliste)
