@@ -8,12 +8,13 @@ def validate_ip_address(address):
         print("IP address {} is not valid".format(address)) 
 
 
-
+## Adding
 dosya = open("fihrist.txt","r+")
 numbers= []
 for satir in dosya:
    satir = satir.replace("\n","")
    numbers.append(satir)
 
-print(numbers[0])
-validate_ip_address(numbers[0])
+## Sorting
+for ip in sorted(numbers, key = lambda ip: [int(ip) for ip in ip.split(".")] ):
+            print(ip)
