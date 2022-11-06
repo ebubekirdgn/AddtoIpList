@@ -3,33 +3,36 @@ import ipaddress
 def validate_ip_address(address):
     try:
         ip = ipaddress.ip_address(address)
-        print("IP address {} is valid. The object returned is {}".format(address, ip))
+        return True
     except ValueError:
-        print("IP address {} is not valid".format(address)) 
-        
+        return False        
 ## Sorting        
-def sorting(liste):
-    for ip in sorted(liste, key = lambda ip: [int(ip) for ip in ip.split(".")] ):
+def sorting(ipList):
+    for ip in sorted(ipList, key = lambda ip: [int(ip) for ip in ip.split(".")] ):
          print(ip)
+
+## Difference Two List 
+def difference(list1,list2):
+    s = set(list2)
+    temp3 = [x for x in list1 if x not in s]
+    return temp3
+
+#TODO : Dosya okuma islemleri teke dusurulecek.
+#def list(filename,listof):
+#    file = open(filename,"r+")
+#    for row in file:
+#        row = row.replace("\n","")
+#        listof.append(row)
 
 ## Adding
 dosya = open("bizimliste.txt","r+")
 bizimliste = []
 for satir in dosya:
-   satir = satir.replace("\n","")
-   bizimliste.append(satir)
+    satir = satir.replace("\n","")
+    if(validate_ip_address(f"{satir}")):
+        bizimliste.append(satir)
+    else:
+        print("Invalid Ip Address Please Control Ip Addres")
 
-dosya2 = open("eklenecekliste.txt","r+")
-eklenecekliste = []
-for satir in dosya2:
-   satir = satir.replace("\n","")
-   eklenecekliste.append(satir)
-
-print(bizimliste)
-print(eklenecekliste)
-
-for eleman in eklenecekliste: 
-    if not(eleman in bizimliste):
-        print(eleman)
-
-sorting(bizimliste)
+print("Bizim Liste : \n " ,bizimliste)
+#sorting(bizimliste)
